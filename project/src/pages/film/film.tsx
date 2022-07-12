@@ -33,7 +33,7 @@ function Film(): JSX.Element {
                 </div>
               </li>
               <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
+                <a href="#" className="user-block__link">Sign out</a>
               </li>
             </ul>
           </header>
@@ -118,14 +118,14 @@ function Film(): JSX.Element {
                 <p>
                   In the 1930s, the Grand Budapest Hotel is a popular European
                   ski resort, presided over by concierge Gustave H. (Ralph
-                  Fiennes). Zero, a junior lobby boy, becomes Gustave's friend
+                  Fiennes). Zero, a junior lobby boy, becomes Gustave`s friend
                   and protege.
                 </p>
 
                 <p>
                   Gustave prides himself on providing first-class service to the
-                  hotel's guests, including satisfying the sexual needs of the
-                  many elderly women who stay there. When one of Gustave's
+                  hotel`s guests, including satisfying the sexual needs of the
+                  many elderly women who stay there. When one of Gustave`s
                   lovers dies mysteriously, Gustave finds himself the recipient
                   of a priceless painting and the chief suspect in her murder.
                 </p>
