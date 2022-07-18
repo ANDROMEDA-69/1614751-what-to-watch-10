@@ -28,7 +28,7 @@ function AddReview(): JSX.Element {
                 </a>
               </li>
               <li className="breadcrumbs__item">
-                <a href="#" className="breadcrumbs__link">Add review</a>
+                <a href="#todo" className="breadcrumbs__link">Add review</a>
               </li>
             </ul>
           </nav>
@@ -45,7 +45,7 @@ function AddReview(): JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <a href="#" className="user-block__link">Sign out</a>
+              <a href="#todo" className="user-block__link">Sign out</a>
             </li>
           </ul>
         </header>
