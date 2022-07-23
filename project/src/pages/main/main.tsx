@@ -16,7 +16,7 @@ type MainProps = {
 
 function Main({ promoFilm, films }: MainProps): JSX.Element {
   return (
-    <body>
+    <>
       <section className="film-card">
         <div className="film-card__bg">
           <img
@@ -110,7 +110,7 @@ function Main({ promoFilm, films }: MainProps): JSX.Element {
         <Footer />
 
       </div>
-    </body>
+    </>
   );
 }
 
