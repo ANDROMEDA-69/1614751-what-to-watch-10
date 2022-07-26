@@ -1,25 +1,35 @@
 import { Link } from 'react-router-dom';
 import { Films } from '../../types/films';
 import VideoPlayer from '../../components/video-player/video-player';
-
+import { useState, useEffect } from 'react';
 
 type FilmCardProps = {
   filmCard: Films;
   handleSetFilm: (id: string) => () => void;
-  activeFilmsId: string | null;
+  activeFilmId: string | null;
 };
 
-function FilmCard({filmCard, handleSetFilm, activeFilmsId,}: FilmCardProps): JSX.Element {
-  const isActiveFilm = !!activeFilmsId && activeFilmsId === filmCard.id;
+function FilmCard({ filmCard, handleSetFilm, activeFilmId }: FilmCardProps): JSX.Element {
+  const isActiveFilm = !!activeFilmId && activeFilmId === filmCard.id;
+  const [play, setPlay] = useState(false);
 
-  if (isActiveFilm) {
-    return <VideoPlayer film={filmCard} />;
-  }
+  useEffect(() => {
+    if (isActiveFilm) {
+      const timeout = setTimeout(() => setPlay(true), 1000);
+      return () => {
+        clearTimeout(timeout);
+        setPlay(false);
+      };
+    }
+  }, [isActiveFilm]);
 
-  return (
+  return play ? (
+    <VideoPlayer film={filmCard} />
+  ) : (
     <article
       className="small-film-card catalog__films-card"
       onMouseEnter={handleSetFilm(filmCard.id)}
+      onMouseLeave={handleSetFilm(activeFilmId)}
     >
       <div className="small-film-card__image">
         <img
