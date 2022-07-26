@@ -8,7 +8,7 @@ type VideoPlayerProps = {
 
 
 function VideoPlayer({ film }: VideoPlayerProps): JSX.Element {
-  const [isLoading, setIsLoading] = useState(true);
+  const [, setIsLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -41,9 +41,6 @@ function VideoPlayer({ film }: VideoPlayerProps): JSX.Element {
     >
       <Link className="small-film-card__image" to={`/films/${film.id}`}>
         <video height="175" ref={videoRef} src={film.url} muted poster={film.posterImage}/>
-        <h3 className="small-film-card__title">
-          {film.filmTitle}
-        </h3>
       </Link>
     </article>
   );
