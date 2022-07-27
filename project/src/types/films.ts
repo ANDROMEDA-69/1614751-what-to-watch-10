@@ -9,4 +9,5 @@ export type Films = {
     description: string;
     director: string;
     actors: string[];
+    time: string;
 };

@@ -5,7 +5,7 @@ import VideoPlayer from '../../components/video-player/video-player';
 
 type FilmCardProps = {
   filmCard: Films;
-  handleSetFilm: (id: string) => () => void;
+  handleSetFilm: (id: string | null) => () => void;
   activeFilmId: string | null;
 };
 
@@ -20,7 +20,7 @@ function FilmCard({filmCard, handleSetFilm, activeFilmId,}: FilmCardProps): JSX.
     <article
       className="small-film-card catalog__films-card"
       onMouseEnter={handleSetFilm(filmCard.id)}
-
+      onMouseLeave={handleSetFilm(activeFilmId)}
     >
       <div className="small-film-card__image">
         <img

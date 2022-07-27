@@ -10,7 +10,7 @@ function FilmsList({ films }: FilmsListProps): JSX.Element {
   const [activeFilmId, setActiveFilmId] = useState<string | null>(null);
 
 
-  const handleSetFilm = (id: string) => () =>{
+  const handleSetFilm = (id: string | null) => () =>{
     setActiveFilmId(id);
   };
 

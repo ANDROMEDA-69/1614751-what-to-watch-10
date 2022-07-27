@@ -12,6 +12,7 @@ export const films: Films[] = [
     description: 'Описание Стрендж',
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
+    time: '1h 30m',
   },
 
   {
@@ -25,6 +26,7 @@ export const films: Films[] = [
     description: 'Описание Аватар 2',
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
+    time: '1h 30m'
   },
 
   {
@@ -38,6 +40,7 @@ export const films: Films[] = [
     description: 'Описание фильма',
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
+    time: '1h 30m',
   },
 
   {
@@ -51,6 +54,7 @@ export const films: Films[] = [
     description: 'Описание фильма',
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
+    time: '1h 30m',
   },
 
   {
@@ -64,6 +68,7 @@ export const films: Films[] = [
     description: 'Описание фильма',
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
+    time: '1h 30m',
   },
 
   {
@@ -77,6 +82,7 @@ export const films: Films[] = [
     description: 'Описание фильма',
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
+    time: '1h 30m',
   },
 
   {
@@ -90,6 +96,7 @@ export const films: Films[] = [
     description: 'Описание фильма',
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
+    time: '1h 30m',
   },
 
   {
@@ -103,6 +110,7 @@ export const films: Films[] = [
     description: 'Описание фильма',
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
+    time: '1h 30m',
   },
 ];
 
