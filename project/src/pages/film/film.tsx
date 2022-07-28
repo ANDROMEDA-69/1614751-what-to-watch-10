@@ -1,9 +1,10 @@
-import FilmsList from '../../components/films-list/films-list';
 import NotFound from '../not-found/not-found';
 import { Link, useParams } from 'react-router-dom';
 import { Films } from '../../types/films';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
+import Tabs from '../../components/tabs/tabs';
+import SimilarFilmsList from '../../components/similar-films-list/similar-films-list';
 
 type FilmProps = {
   films: Films[];
@@ -13,6 +14,7 @@ function Film({ films }: FilmProps): JSX.Element {
   const params = useParams();
 
   const currentFilm = films.find((film) => film.id === params.id);
+  const similarFilms = films.filter((film) => (film.genres === currentFilm?.genres) && film.id !== currentFilm?.id);
 
   if (currentFilm) {
     const {
@@ -21,10 +23,6 @@ function Film({ films }: FilmProps): JSX.Element {
       posterImage,
       genres,
       releaseYear,
-      actors,
-      description,
-      director,
-      reviews,
     } = currentFilm;
     return (
       <>
@@ -103,58 +101,15 @@ function Film({ films }: FilmProps): JSX.Element {
               </div>
 
               <div className="film-card__desc">
-                <nav className="film-nav film-card__nav">
-                  <ul className="film-nav__list">
-                    <li className="film-nav__item film-nav__item--active">
-                      <a href="#todo" className="film-nav__link">
-                        Overview
-                      </a>
-                    </li>
-                    <li className="film-nav__item">
-                      <a href="#todo" className="film-nav__link">
-                        Details
-                      </a>
-                    </li>
-                    <li className="film-nav__item">
-                      <a href="#todo" className="film-nav__link">
-                        Reviews
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-
-                <div className="film-rating">
-                  <div className="film-rating__score">8,9</div>
-                  <p className="film-rating__meta">
-                    <span className="film-rating__level">Very good</span>
-                    <span className="film-rating__count">{reviews} ratings</span>
-                  </p>
-                </div>
-
-                <div className="film-card__text">
-                  <p>
-                    {description}
-                  </p>
-
-                  <p className="film-card__director">
-                    <strong>Director: {director}</strong>
-                  </p>
-
-                  <p className="film-card__starring">
-                    <strong>
-                      Starring: {actors}
-                    </strong>
-                  </p>
-                </div>
+                <Tabs films={currentFilm} />
               </div>
             </div>
           </div>
         </section>
         <div className="page-content">
-          <section className="catalog catalog--like-this">
-            <h2 className="catalog__title">More like this</h2>
-            <FilmsList films={films} />
-          </section>
+
+          <SimilarFilmsList similarFilms={similarFilms} />
+
           <Footer />
         </div>
       </>

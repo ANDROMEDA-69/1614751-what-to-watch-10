@@ -5,12 +5,12 @@ import VideoPlayer from '../../components/video-player/video-player';
 
 type FilmCardProps = {
   filmCard: Films;
-  handleSetFilm: (id: string) => () => void;
-  activeFilmsId: string | null;
+  handleSetFilm: (id: string | null) => () => void;
+  activeFilmId: string | null;
 };
 
-function FilmCard({filmCard, handleSetFilm, activeFilmsId,}: FilmCardProps): JSX.Element {
-  const isActiveFilm = !!activeFilmsId && activeFilmsId === filmCard.id;
+function FilmCard({filmCard, handleSetFilm, activeFilmId,}: FilmCardProps): JSX.Element {
+  const isActiveFilm = !!activeFilmId && activeFilmId === filmCard.id;
 
   if (isActiveFilm) {
     return <VideoPlayer film={filmCard} />;
@@ -20,6 +20,7 @@ function FilmCard({filmCard, handleSetFilm, activeFilmsId,}: FilmCardProps): JSX
     <article
       className="small-film-card catalog__films-card"
       onMouseEnter={handleSetFilm(filmCard.id)}
+      onMouseLeave={handleSetFilm(activeFilmId)}
     >
       <div className="small-film-card__image">
         <img
