@@ -1,7 +1,7 @@
 export type Films = {
     id: string;
     filmTitle: string;
-    genres: string;
+    genre: string;
     releaseYear: string;
     posterImage: string;
     url: string;
@@ -10,4 +10,6 @@ export type Films = {
     director: string;
     actors: string[];
     time: string;
+    rating: string;
+    score: number;
 };

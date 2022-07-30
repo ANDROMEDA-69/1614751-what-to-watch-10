@@ -25,7 +25,7 @@ function Details({ films }: DetailsProps): JSX.Element {
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
-          <span className="film-card__details-value">{films.genres}</span>
+          <span className="film-card__details-value">{films.genre}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
