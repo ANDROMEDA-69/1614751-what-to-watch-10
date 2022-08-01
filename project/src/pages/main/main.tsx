@@ -1,9 +1,11 @@
-import FilmsList from '../../components/films-list/films-list';
-import { Films } from '../../types/films';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
+import {useAppSelector} from '../../hooks/index';
+import FilmsList from '../../components/films-list/films-list';
 import Catalog from '../../components/catalog/catalog';
+import { films } from '../../mocks/films';
+
 
 type MainProps = {
   promoFilm: {
@@ -11,10 +13,10 @@ type MainProps = {
     genre: string;
     year: number;
   },
-  films: Films[];
 };
 
-function Main({ promoFilm, films }: MainProps): JSX.Element {
+function Main({ promoFilm }: MainProps): JSX.Element {
+  const currentFilms = useAppSelector((state) => state.films);
   return (
     <>
       <section className="film-card">
@@ -84,7 +86,7 @@ function Main({ promoFilm, films }: MainProps): JSX.Element {
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">{films.length}</span>
+                  <span className="film-card__count">{currentFilms.length}</span>
                 </Link>
               </div>
             </div>
@@ -96,9 +98,9 @@ function Main({ promoFilm, films }: MainProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <Catalog />
+          <Catalog films={films}/>
 
-          <FilmsList films={films} />
+          <FilmsList films={currentFilms} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">

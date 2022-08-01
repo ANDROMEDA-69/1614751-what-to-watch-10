@@ -3,9 +3,11 @@ import { Films } from '../../types/films';
 import Overview from '../overview/overview';
 import Reviews from '../reviews/reviews';
 import Details from '../details/details';
+import { Review } from '../../types/review';
 
 type TabsProps = {
   films: Films;
+  reviews: Review[];
 };
 
 const Tab = {
@@ -14,7 +16,7 @@ const Tab = {
   REVIEWS: 'Reviews',
 };
 
-function Tabs({ films }: TabsProps): JSX.Element {
+function Tabs({ films, reviews }: TabsProps): JSX.Element {
   const [activeTab, setActiveTab] = useState('Overview');
 
   return (
@@ -37,7 +39,7 @@ function Tabs({ films }: TabsProps): JSX.Element {
 
       {activeTab === Tab.OVERVIEW ? <Overview films={films}/> : null}
       {activeTab === Tab.DETAILS ? <Details films={films}/> : null}
-      {activeTab === Tab.REVIEWS ? <Reviews /> : null}
+      {activeTab === Tab.REVIEWS ? <Reviews reviews={reviews} filmId={films.id}/> : null}
     </div>
   );
 }

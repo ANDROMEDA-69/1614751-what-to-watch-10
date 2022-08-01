@@ -9,9 +9,9 @@ function Overview({ films }: OverviewProps): JSX.Element {
   return (
     <Fragment>
       <div className="film-rating">
-        <div className="film-rating__score">8,9</div>
+        <div className="film-rating__score">{films.score}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">Very good</span>
+          <span className="film-rating__level">{films.rating}</span>
           <span className="film-rating__count">{films.reviews} ratings</span>
         </p>
       </div>

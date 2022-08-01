@@ -5,23 +5,26 @@ import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import Tabs from '../../components/tabs/tabs';
 import SimilarFilmsList from '../../components/similar-films-list/similar-films-list';
+import { Review } from '../../types/review';
 
 type FilmProps = {
   films: Films[];
+  reviews: Review[];
 };
 
-function Film({ films }: FilmProps): JSX.Element {
+function Film({ films, reviews }: FilmProps): JSX.Element {
   const params = useParams();
 
   const currentFilm = films.find((film) => film.id === params.id);
-  const similarFilms = films.filter((film) => (film.genres === currentFilm?.genres) && film.id !== currentFilm?.id);
+
+  const similarFilms = films.filter((film) => (film.genre === currentFilm?.genre) && film.id !== currentFilm?.id);
 
   if (currentFilm) {
     const {
       id,
       filmTitle,
       posterImage,
-      genres,
+      genre,
       releaseYear,
     } = currentFilm;
     return (
@@ -60,7 +63,7 @@ function Film({ films }: FilmProps): JSX.Element {
               <div className="film-card__desc">
                 <h2 className="film-card__title">{filmTitle}</h2>
                 <p className="film-card__meta">
-                  <span className="film-card__genre">{genres}</span>
+                  <span className="film-card__genre">{genre}</span>
                   <span className="film-card__year">{releaseYear}</span>
                 </p>
 
@@ -101,7 +104,7 @@ function Film({ films }: FilmProps): JSX.Element {
               </div>
 
               <div className="film-card__desc">
-                <Tabs films={currentFilm} />
+                <Tabs films={currentFilm} reviews={reviews}/>
               </div>
             </div>
           </div>

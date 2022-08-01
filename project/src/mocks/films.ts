@@ -4,7 +4,7 @@ export const films: Films[] = [
   {
     id: '1',
     filmTitle: 'Доктор Стрендж 2: В мультивселенной безумия',
-    genres: 'Fantasy',
+    genre: 'Fantasy',
     releaseYear: '2021',
     posterImage: 'https://upload.wikimedia.org/wikipedia/ru/thumb/7/77/%D0%94%D0%BE%D0%BA%D1%82%D0%BE%D1%80_%D0%A1%D1%82%D1%80%D1%8D%D0%BD%D0%B4%D0%B6_%D0%92_%D0%BC%D1%83%D0%BB%D1%8C%D1%82%D0%B8%D0%B2%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9_%D0%B1%D0%B5%D0%B7%D1%83%D0%BC%D0%B8%D1%8F_%D1%82%D0%B8%D0%B7%D0%B5%D1%80_%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80.jpeg/800px-%D0%94%D0%BE%D0%BA%D1%82%D0%BE%D1%80_%D0%A1%D1%82%D1%80%D1%8D%D0%BD%D0%B4%D0%B6_%D0%92_%D0%BC%D1%83%D0%BB%D1%8C%D1%82%D0%B8%D0%B2%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9_%D0%B1%D0%B5%D0%B7%D1%83%D0%BC%D0%B8%D1%8F_%D1%82%D0%B8%D0%B7%D0%B5%D1%80_%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80.jpeg',
     url: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -13,12 +13,14 @@ export const films: Films[] = [
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
     time: '1h 30m',
+    rating: 'Good',
+    score: 8.4 ,
   },
 
   {
     id: '2',
     filmTitle: 'Аватар 2: Путь воды',
-    genres: 'Fantasy',
+    genre: 'Fantasy',
     releaseYear: '2022',
     posterImage: 'https://ixbt.online/live/images/original/04/23/83/2021/12/20/886545847b.jpg',
     url: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -26,13 +28,15 @@ export const films: Films[] = [
     description: 'Описание Аватар 2',
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
-    time: '1h 30m'
+    time: '1h 30m',
+    rating: 'Bad',
+    score: 2,
   },
 
   {
     id: '3',
     filmTitle: 'Macbeth',
-    genres: 'Жанр',
+    genre: 'Crime',
     releaseYear: '3',
     posterImage: 'img/macbeth.jpg',
     url: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -41,12 +45,14 @@ export const films: Films[] = [
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
     time: '1h 30m',
+    rating: 'Normal',
+    score: 4.5 ,
   },
 
   {
     id: '4',
     filmTitle: 'We need to talk about Kevin',
-    genres: 'Жанр',
+    genre: 'Documentary',
     releaseYear: '4',
     posterImage: 'img/we-need-to-talk-about-kevin.jpg',
     url: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -55,12 +61,14 @@ export const films: Films[] = [
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
     time: '1h 30m',
+    rating: 'Good',
+    score: 9,
   },
 
   {
     id: '5',
     filmTitle: 'What We Do in the Shadows',
-    genres: 'Жанр',
+    genre: 'Drama',
     releaseYear: '5',
     posterImage: 'img/what-we-do-in-the-shadows.jpg',
     url: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -69,12 +77,14 @@ export const films: Films[] = [
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
     time: '1h 30m',
+    rating: 'Awesome',
+    score: 10,
   },
 
   {
     id: '6',
     filmTitle: 'Revenant',
-    genres: 'Жанр',
+    genre: 'Horror',
     releaseYear: '6',
     posterImage: 'img/revenant.jpg',
     url: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -83,12 +93,14 @@ export const films: Films[] = [
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
     time: '1h 30m',
+    rating: 'Good',
+    score: 9.8 ,
   },
 
   {
     id: '7',
     filmTitle: 'Johnny English',
-    genres: 'Жанр',
+    genre: 'Kids & Family',
     releaseYear: '7',
     posterImage: 'img/johnny-english.jpg',
     url: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -97,12 +109,14 @@ export const films: Films[] = [
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
     time: '1h 30m',
+    rating: 'Good',
+    score: 8.7 ,
   },
 
   {
     id: '8',
     filmTitle: 'Pulp Fiction',
-    genres: 'Жанр',
+    genre: 'Sci-Fi',
     releaseYear: '8',
     posterImage: 'img/pulp-fiction.jpg',
     url: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -111,6 +125,8 @@ export const films: Films[] = [
     director: 'Режиссер',
     actors: ['актер, актер, актер'],
     time: '1h 30m',
+    rating: 'Bad',
+    score: 2,
   },
 ];
 
