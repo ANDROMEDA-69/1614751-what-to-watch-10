@@ -2,11 +2,11 @@ import { Review } from '../../types/review';
 
 type ReviewsProps = {
   reviews: Review[];
-  filmId: string;
+  filmId: number | null;
 };
 
-function Reviews({ reviews ,filmId}: ReviewsProps): JSX.Element {
-  const reviewForFilm = reviews.filter((review)=>review.filmId === filmId);
+function Reviews({ reviews , filmId}: ReviewsProps): JSX.Element {
+  const reviewForFilm = reviews.filter((review)=> review.filmId === filmId);
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">

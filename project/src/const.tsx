@@ -2,7 +2,7 @@ enum AppRoute {
   Main = '/',
   Login = '/login',
   MyList = '/mylist',
-  Film = '/films/:id',
+  Film = '/films/id',
   AddReview = 'films/:id/review',
   Player = '/player/:id',
 }
@@ -15,7 +15,7 @@ enum AuthorizationStatus {
 
 const GENRE_TABS = [
   'All genres',
-  'Comedie',
+  'Comedy',
   'Crime',
   'Documentary',
   'Drama',
@@ -25,6 +25,15 @@ const GENRE_TABS = [
   'Sci-Fi',
   'Thriller',
 ];
+
+export enum APIRoute {
+  Films = '/films',
+  Promo = '/promo',
+  Login = '/login',
+  Logout = '/logout',
+}
+
+export const TIMEOUT_SHOW_ERROR = 2000;
 
 const CARDS_PER_STEP = 8;
 
