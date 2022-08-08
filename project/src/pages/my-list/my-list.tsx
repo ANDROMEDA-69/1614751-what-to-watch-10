@@ -1,15 +1,14 @@
-import { Films } from '../../types/films';
 import { Link } from 'react-router-dom';
 import FilmsList from '../../components/films-list/films-list';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
+import { useAppSelector } from '../../hooks';
 
 
-type MyListProps = {
-  films: Films[];
-};
+function MyList(): JSX.Element {
+  const films = useAppSelector((state) => state.films);
 
-function MyList({ films }: MyListProps): JSX.Element {
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

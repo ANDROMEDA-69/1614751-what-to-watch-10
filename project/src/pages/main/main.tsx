@@ -3,27 +3,20 @@ import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import {useAppSelector} from '../../hooks/index';
 import FilmsList from '../../components/films-list/films-list';
-import Catalog from '../../components/catalog/catalog';
-import { films } from '../../mocks/films';
+import GenresList from '../../components/genres-list/genres-list';
 
-
-type MainProps = {
-  promoFilm: {
-    title: string;
-    genre: string;
-    year: number;
-  },
-};
-
-function Main({ promoFilm }: MainProps): JSX.Element {
-  const currentFilms = useAppSelector((state) => state.films);
+function Main(): JSX.Element {
+  const promo = useAppSelector((state) => state.promo);
+  const filmsList = useAppSelector((state) => state.films);
+  const filteredFilmsList = useAppSelector((state) => state.filteredFilms);
+  const favoriteFilmsLength = useAppSelector((state) => state.films).filter((filmA) => filmA.isFavorite).length;
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
           <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
+            src={promo?.backgroundImage}
+            alt={promo?.name}
           />
         </div>
 
@@ -54,18 +47,18 @@ function Main({ promoFilm }: MainProps): JSX.Element {
           <div className="film-card__info">
             <div className="film-card__poster">
               <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
-                alt="The Grand Budapest Hotel poster"
+                src={promo?.posterImage}
+                alt={promo?.name}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilm.title}</h2>
+              <h2 className="film-card__title">{promo?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{promoFilm.genre}</span>
-                <span className="film-card__year">{promoFilm.year}</span>
+                <span className="film-card__genre">{promo?.genre}</span>
+                <span className="film-card__year">{promo?.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -86,7 +79,7 @@ function Main({ promoFilm }: MainProps): JSX.Element {
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">{currentFilms.length}</span>
+                  <span className="film-card__count">{favoriteFilmsLength}</span>
                 </Link>
               </div>
             </div>
@@ -98,9 +91,9 @@ function Main({ promoFilm }: MainProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <Catalog films={films}/>
+          <GenresList films={filmsList} />
 
-          <FilmsList films={currentFilms} />
+          <FilmsList films={filteredFilmsList} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">

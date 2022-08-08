@@ -1,48 +1,36 @@
-import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Films } from '../../types/films';
+import {useEffect, useRef} from 'react';
+
+const PLAY_TIMEOUT = 1000;
 
 type VideoPlayerProps = {
-  film: Films;
+  image: string;
+  video: string;
 };
 
+function VideoPlayer({video, image}: VideoPlayerProps): JSX.Element {
 
-function VideoPlayer({ film }: VideoPlayerProps): JSX.Element {
-  const [, setIsLoading] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+
 
   useEffect(() => {
     if (videoRef.current === null) {
       return;
     }
 
-    videoRef.current.addEventListener('loadeddata', () => setIsLoading(false));
-
-    if (isPlaying) {
-      videoRef.current.play();
-      return;
-    }
-
-    videoRef.current.pause();
-    videoRef.current.currentTime = 0;
-    videoRef.current.load();
-  }, [isPlaying]);
+    setTimeout(() => {
+      videoRef.current?.play();
+    }, PLAY_TIMEOUT);
+  }, []);
 
   return (
-    <article
-      className="small-film-card catalog__films-card"
-      onMouseOver={() => {
-        setIsPlaying(true);
-      }}
-      onMouseOut={() => {
-        setIsPlaying(false);
-      }}
-    >
-      <Link className="small-film-card__image" to={`/films/${film.id}`}>
-        <video height="175" ref={videoRef} src={film.url} muted poster={film.posterImage}/>
-      </Link>
-    </article>
+    <video
+      autoPlay
+      muted
+      src={video}
+      ref={videoRef}
+      className="player__video"
+      poster={image}
+    />
   );
 }
 

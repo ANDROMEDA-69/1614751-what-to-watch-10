@@ -1,39 +1,38 @@
-import { Link } from 'react-router-dom';
-import { Films } from '../../types/films';
-import VideoPlayer from '../../components/video-player/video-player';
-
+import {Link} from 'react-router-dom';
+import VideoPlayer from '../video-player/video-player';
 
 type FilmCardProps = {
-  filmCard: Films;
-  handleSetFilm: (id: string | null) => () => void;
-  activeFilmId: string | null;
+  id: number;
+  filmTitle: string;
+  posterImage: string;
+  videoLink: string;
+  isActive: boolean;
+  makeCardActive: (id: number) => void;
+  makeCardInactive: () => void;
 };
 
-function FilmCard({filmCard, handleSetFilm, activeFilmId,}: FilmCardProps): JSX.Element {
-  const isActiveFilm = !!activeFilmId && activeFilmId === filmCard.id;
 
-  if (isActiveFilm) {
-    return <VideoPlayer film={filmCard} />;
-  }
-
+function FilmCard({id, filmTitle, posterImage, videoLink, isActive, makeCardActive, makeCardInactive} : FilmCardProps): JSX.Element {
   return (
     <article
-      className="small-film-card catalog__films-card"
-      onMouseEnter={handleSetFilm(filmCard.id)}
-      onMouseLeave={handleSetFilm(activeFilmId)}
+      className={`small-film-card catalog__films-card ${ isActive ? 'active' : ''}` }
+      onMouseEnter={() => makeCardActive(id)}
+      onMouseLeave={() => makeCardInactive()}
     >
       <div className="small-film-card__image">
-        <img
-          src={filmCard.posterImage}
-          alt={filmCard.filmTitle}
-          width="280"
-          height="175"
-        />
+        {isActive ? (
+          <VideoPlayer image={posterImage} video={videoLink} />
+        ) : (
+          <img
+            src={posterImage}
+            alt={filmTitle}
+            width="280"
+            height="175"
+          />
+        )}
       </div>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={`/films/${filmCard.id}`}>
-          {filmCard.filmTitle}
-        </Link>
+        <Link className="small-film-card__link" to={`/films/${id}`}>{filmTitle}</Link>
       </h3>
     </article>
   );
