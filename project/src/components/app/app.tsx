@@ -4,13 +4,15 @@ import AddReview from '../../pages/add-review/add-review';
 import Player from '../../pages/player/player';
 import SignIn from '../../pages/sing-in/sign-in';
 import NotFound from '../../pages/not-found/not-found';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes,} from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
 import MyList from '../../pages/my-list/my-list';
 import PrivateRoute from '../../components/private-route/private-route';
 import { Review } from '../../types/review';
 import LoadingScreen from '../loading-screen/loading-screen';
+import browserHistory from '../../browser-history';
+import HistoryRouter from '../history-router/history-router';
 
 const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
@@ -20,16 +22,16 @@ type AppProps = {
 };
 
 function App({ reviews }: AppProps): JSX.Element {
-  const {authorizationStatus, isDataLoad} = useAppSelector((state) => state);
+  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
 
-  if(isCheckedAuth(authorizationStatus) || isDataLoad){
+  if(isCheckedAuth(authorizationStatus) || isDataLoaded){
     return (
       <LoadingScreen />
     );
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route path={AppRoute.Main} element={<Main />} />
         <Route path={AppRoute.Film} element={<Film reviews={reviews}/>} />
@@ -46,7 +48,7 @@ function App({ reviews }: AppProps): JSX.Element {
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 

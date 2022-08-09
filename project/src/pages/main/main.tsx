@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import Footer from '../../components/footer/footer';
-import Logo from '../../components/logo/logo';
-import {useAppSelector} from '../../hooks/index';
+import {useAppSelector } from '../../hooks/index';
 import FilmsList from '../../components/films-list/films-list';
 import GenresList from '../../components/genres-list/genres-list';
+import Header from '../../components/header/header';
 
 function Main(): JSX.Element {
   const promo = useAppSelector((state) => state.promo);
@@ -22,26 +22,7 @@ function Main(): JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header film-card__head">
-
-          <Logo />
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width="63"
-                  height="63"
-                />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a href="#todo" className="user-block__link">Sign out</a>
-            </li>
-          </ul>
-        </header>
+        <Header />
 
         <div className="film-card__wrap">
           <div className="film-card__info">
