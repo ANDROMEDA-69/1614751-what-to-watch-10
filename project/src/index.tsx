@@ -4,8 +4,9 @@ import App from './components/app/app';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { reviews } from './mocks/reviews';
-import ErrorMessage from './components/error-message/error-message';
+import {ToastContainer} from 'react-toastify';
 import {fetchFilmsAction, checkAuthAction, fetchPromoFilmAction } from './store/api-actions';
+import 'react-toastify/dist/ReactToastify.css';
 
 store.dispatch(fetchFilmsAction());
 
@@ -21,7 +22,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store = {store}>
-      <ErrorMessage />
+      <ToastContainer />
       <App reviews={ reviews }/>
     </Provider>
   </React.StrictMode>,
