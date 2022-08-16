@@ -1,31 +1,34 @@
 import { useState } from 'react';
 import { Film } from '../../types/films';
 import Overview from '../overview/overview';
-import Reviews from '../reviews/reviews';
+import FilmReviews from '../reviews/reviews';
 import Details from '../details/details';
-import { Review } from '../../types/review';
+import { Reviews } from '../../types/review';
+import './button.css';
 
 type TabsProps = {
-  films: Film | null;
-  reviews: Review[];
+  film: Film | null;
+  reviews: Reviews;
 };
 
-function Tabs({ films, reviews }: TabsProps): JSX.Element {
+function Tabs({ film, reviews }: TabsProps): JSX.Element {
   const [activeTab, setActiveTab] = useState('Overview');
   const onTabClickHandler = (e: React.MouseEvent) => {
+    e.preventDefault();
+
     if (e.currentTarget.textContent !== null) {
       setActiveTab(e.currentTarget.textContent);
     }
   };
 
-  const renderSwitch = (tab: string) => {
+  const renderFilmData = (tab: string) => {
     switch(tab) {
       case 'Overview':
-        return <Overview film={films} />;
+        return <Overview film={film} />;
       case 'Details':
-        return <Details film={films} />;
+        return <Details film={film} />;
       case 'Reviews':
-        return <Reviews reviews={reviews} filmId={films?.id || null} />;
+        return <FilmReviews comments={reviews} />;
     }
   };
 
@@ -33,24 +36,18 @@ function Tabs({ films, reviews }: TabsProps): JSX.Element {
     <>
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li
-            className={activeTab === 'Overview' ? 'film-nav__item film-nav__item--active' : 'film-nav__item'}
-          >
-            <button className="film-nav__link" onClick={onTabClickHandler}>Overview</button>
+          <li className={activeTab === 'Overview' ? 'film-nav__item film-nav__item--active' : 'film-nav__item'}>
+            <a href="/" className="film-nav__link" onClick={onTabClickHandler}>Overview</a>
           </li>
-          <li
-            className={activeTab === 'Details' ? 'film-nav__item film-nav__item--active' : 'film-nav__item'}
-          >
-            <button className="film-nav__link" onClick={onTabClickHandler}>Details</button>
+          <li className={activeTab === 'Details' ? 'film-nav__item film-nav__item--active' : 'film-nav__item'}>
+            <a href="/" className="film-nav__link" onClick={onTabClickHandler}>Details</a>
           </li>
-          <li
-            className={activeTab === 'Reviews' ? 'film-nav__item film-nav__item--active' : 'film-nav__item'}
-          >
-            <button className="film-nav__link" onClick={onTabClickHandler}>Reviews</button>
+          <li className={activeTab === 'Reviews' ? 'film-nav__item film-nav__item--active' : 'film-nav__item'}>
+            <a href="/" className="film-nav__link" onClick={onTabClickHandler}>Reviews</a>
           </li>
         </ul>
       </nav>
-      {renderSwitch(activeTab)}
+      {renderFilmData(activeTab)}
     </>
   );
 }

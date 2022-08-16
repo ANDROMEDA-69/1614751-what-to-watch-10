@@ -9,7 +9,6 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
 import MyList from '../../pages/my-list/my-list';
 import PrivateRoute from '../../components/private-route/private-route';
-import { Review } from '../../types/review';
 import LoadingScreen from '../loading-screen/loading-screen';
 import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-router/history-router';
@@ -17,11 +16,8 @@ import HistoryRouter from '../history-router/history-router';
 const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
 
-type AppProps = {
-  reviews: Review[];
-};
 
-function App({ reviews }: AppProps): JSX.Element {
+function App(): JSX.Element {
   const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
 
   if(isCheckedAuth(authorizationStatus) || isDataLoaded){
@@ -34,7 +30,7 @@ function App({ reviews }: AppProps): JSX.Element {
     <HistoryRouter history={browserHistory}>
       <Routes>
         <Route path={AppRoute.Main} element={<Main />} />
-        <Route path={AppRoute.Film} element={<Film reviews={reviews}/>} />
+        <Route path={AppRoute.Film} element={<Film />} />
         <Route path={AppRoute.AddReview} element={<AddReview />} />
         <Route path={AppRoute.Player} element={<Player />} />
         <Route path={AppRoute.Login} element={<SignIn />} />

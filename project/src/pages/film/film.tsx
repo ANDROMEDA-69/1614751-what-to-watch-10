@@ -1,27 +1,33 @@
 import { Link, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import Footer from '../../components/footer/footer';
-import Logo from '../../components/logo/logo';
 import Tabs from '../../components/tabs/tabs';
-import { Review } from '../../types/review';
-import { useAppSelector } from '../../hooks/index';
+import { useAppSelector, useAppDispatch } from '../../hooks/index';
 import FilmsList from '../../components/films-list/films-list';
+import {
+  fetchFilmAction,
+  fetchSimilarFilmsAction,
+  fetchReviewsAction,
+} from '../../store/api-actions';
+import Header from '../../components/header/header';
+import {AuthorizationStatus} from '../../const';
 
-type FilmProps = {
-  reviews: Review[];
-};
-
-function Film({ reviews }: FilmProps): JSX.Element {
+function Film(): JSX.Element {
+  const dispatch = useAppDispatch();
   const params = useParams();
-  const films = useAppSelector((state) => state.films);
-  const currentFilm = films.find((film) => String(film.id) === params.id);
+  const currentFilm = useAppSelector((state) => state.film);
+  const reviews = useAppSelector((state) => state.reviews);
   const favoriteFilmsLength = useAppSelector((state) => state.films).filter(
     (filmA) => filmA.isFavorite
   ).length;
-  const similarFilms = films
-    .filter(
-      (film) => film.genre === currentFilm?.genre && film.id !== currentFilm?.id
-    )
-    .slice(0, 4);
+  const similarFilms = useAppSelector((state) => state.similarFilms);
+  const authStatus = useAppSelector((state) => state.authorizationStatus);
+
+  useEffect(() => {
+    dispatch(fetchFilmAction(params?.id));
+    dispatch(fetchSimilarFilmsAction(params?.id));
+    dispatch(fetchReviewsAction(params?.id));
+  }, [params?.id, dispatch]);
 
   return (
     <>
@@ -33,27 +39,7 @@ function Film({ reviews }: FilmProps): JSX.Element {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header film-card__head">
-            <Logo />
-
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img
-                    src="img/avatar.jpg"
-                    alt="User avatar"
-                    width="63"
-                    height="63"
-                  />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <Link className="user-block__link" to="/login">
-                  Sign out
-                </Link>
-              </li>
-            </ul>
-          </header>
+          <Header />
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
@@ -82,12 +68,7 @@ function Film({ reviews }: FilmProps): JSX.Element {
                     {favoriteFilmsLength}
                   </span>
                 </Link>
-                <Link
-                  className="btn film-card__button"
-                  to={`/films/${currentFilm?.id}/review`}
-                >
-                  Add review
-                </Link>
+                {authStatus === AuthorizationStatus.Auth ? <Link to={`/films/${currentFilm?.id}/review`} className="btn film-card__button">Add review</Link> : null}
               </div>
             </div>
           </div>
@@ -105,13 +86,18 @@ function Film({ reviews }: FilmProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <Tabs films={currentFilm || null} reviews={reviews} />
+              <Tabs film={currentFilm || null} reviews={reviews} />
             </div>
           </div>
         </div>
       </section>
       <div className="page-content">
-        <FilmsList films={similarFilms} />
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">More like this</h2>
+
+          <FilmsList films={similarFilms} />
+
+        </section>
 
         <Footer />
       </div>

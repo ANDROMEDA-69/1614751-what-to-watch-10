@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { reviews } from './mocks/reviews';
 import {ToastContainer} from 'react-toastify';
 import {fetchFilmsAction, checkAuthAction, fetchPromoFilmAction } from './store/api-actions';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,7 +22,7 @@ root.render(
   <React.StrictMode>
     <Provider store = {store}>
       <ToastContainer />
-      <App reviews={ reviews }/>
+      <App />
     </Provider>
   </React.StrictMode>,
 );

@@ -1,12 +1,18 @@
 import { Link, useParams } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
 import Logo from '../../components/logo/logo';
+import { useEffect } from 'react';
+import { fetchFilmAction } from '../../store/api-actions';
 
 function AddReview(): JSX.Element {
-  const films = useAppSelector((state) => state.films);
+  const dispatch = useAppDispatch();
+  const film = useAppSelector((state) => state.film);
   const params = useParams();
-  const film = films.find((filmA) => String(filmA.id) === params.id);
+
+  useEffect(() => {
+    dispatch(fetchFilmAction(params?.id));
+  },[params?.id, dispatch]);
 
   return (
     <section className="film-card film-card--full">

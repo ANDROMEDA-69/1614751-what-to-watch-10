@@ -1,8 +1,18 @@
+export type AddReview = {
+  comment: string;
+  rating: number;
+}
+
+
 export type Review = {
-    id: number;
-    author: string;
+    comment: string;
     date: string;
+    id: number;
     rating: number;
-    reviewText: string;
-    filmId: number;
-};
+    user: {
+      id: number;
+      name: string;
+    };
+  };
+
+export type Reviews = Review[];
