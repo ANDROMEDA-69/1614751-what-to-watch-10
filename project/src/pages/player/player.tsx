@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/index';
+import { getFilms } from '../../store/films-process/selectors';
 
 
 function Player(): JSX.Element {
   const params = useParams();
   const id = `${(params.id ? params.id.slice(1) : '0')}`;
-  const films = useAppSelector((state) => state.films);
+  const films = useAppSelector(getFilms);
   const film = films.find((item) => item.id === Number.parseInt(id, 10)) || films[0];
 
   return (
