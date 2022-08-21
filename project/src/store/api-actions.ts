@@ -28,7 +28,7 @@ export const fetchReviewsAction = createAsyncThunk<Reviews, string | undefined, 
   state: State,
   extra: AxiosInstance
 }>(
-  'data/fetchFilm',
+  'data/fetchReviews',
   async (id, {dispatch, extra: api}) => {
     const {data} = await api.get<Reviews>(`${APIRoute.Reviews}/${id}`);
     return data;

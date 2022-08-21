@@ -1,5 +1,5 @@
 import { NameSpace } from '../../const';
 import { State } from '../../types/state';
 
-export const getGenre = (state: State): string => state[NameSpace.Genre].genre;
+export const getGenre = (state: State): string => state[NameSpace.FilterProcess].genre;
 

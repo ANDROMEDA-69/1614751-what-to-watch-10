@@ -5,12 +5,12 @@ import FilmsList from '../../components/films-list/films-list';
 import GenresList from '../../components/genres-list/genres-list';
 import Header from '../../components/header/header';
 import { getPromoFilm } from '../../store/promo-film-process/selectors';
-import { getFilms } from '../../store/films-process/selectors';
+import { getFilms, getFilteredFilms } from '../../store/films-process/selectors';
 
 function Main(): JSX.Element {
   const promo = useAppSelector(getPromoFilm);
   const filmsList = useAppSelector(getFilms);
-  const filteredFilmsList = useAppSelector(getFilms);
+  const filteredFilmsList = useAppSelector(getFilteredFilms);
   const favoriteFilmsLength = useAppSelector(getFilms).filter((filmA) => filmA.isFavorite).length;
   return (
     <>

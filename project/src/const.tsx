@@ -12,7 +12,7 @@ enum NameSpace {
   PromoFilm = 'PROMO_FILM',
   Films = 'FILMS',
   Film = 'FILM',
-  Genre = 'GENRE',
+  FilterProcess= 'FILTER_PROCESS',
   AddReview = 'ADD_REVIEW',
 }
 

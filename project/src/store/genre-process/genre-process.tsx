@@ -1,16 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { DEFAULT_GENRE, NameSpace } from '../../const';
-import { GenreProcess } from '../../types/state';
+import { FilterProcess,} from '../../types/state';
 import { changeGenre, setFilter, resetFilters } from '../action';
 
-const initialState: GenreProcess = {
+const initialState: FilterProcess = {
   genre: DEFAULT_GENRE,
   filteredFilms: [],
   films: [],
 };
 
-export const genreProcess = createSlice({
-  name: NameSpace.Genre,
+export const filterProcess = createSlice({
+  name: NameSpace.FilterProcess,
   initialState,
   reducers: {},
   extraReducers(builder) {

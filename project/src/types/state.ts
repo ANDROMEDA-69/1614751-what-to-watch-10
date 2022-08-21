@@ -1,7 +1,7 @@
 import {store} from '../store/index.js';
 import { AuthorizationStatus } from '../const.js';
 import { Films, Film } from './films.js';
-import { errorReview, Reviews } from './review.js';
+import { Reviews, errorReview } from './review.js';
 import { rootReducer } from '../store/root-reducer.js';
 
 export type UserProcess = {
@@ -13,7 +13,7 @@ export type FilmsProcess = {
     isDataLoaded: boolean;
 };
 
-export type GenreProcess = {
+export type FilterProcess = {
     genre: string;
     filteredFilms: Films;
     films: Films;
