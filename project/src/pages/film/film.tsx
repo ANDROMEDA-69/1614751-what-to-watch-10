@@ -11,17 +11,20 @@ import {
 } from '../../store/api-actions';
 import Header from '../../components/header/header';
 import {AuthorizationStatus} from '../../const';
+import { getFilm, getFilmReview } from '../../store/film-process/selectors';
+import { getFilms } from '../../store/films-process/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 function Film(): JSX.Element {
   const dispatch = useAppDispatch();
   const params = useParams();
-  const currentFilm = useAppSelector((state) => state.film);
-  const reviews = useAppSelector((state) => state.reviews);
-  const favoriteFilmsLength = useAppSelector((state) => state.films).filter(
+  const currentFilm = useAppSelector(getFilm);
+  const reviews = useAppSelector(getFilmReview);
+  const favoriteFilmsLength = useAppSelector(getFilms).filter(
     (filmA) => filmA.isFavorite
   ).length;
-  const similarFilms = useAppSelector((state) => state.similarFilms);
-  const authStatus = useAppSelector((state) => state.authorizationStatus);
+  const similarFilms = useAppSelector(getFilms);
+  const authStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
     dispatch(fetchFilmAction(params?.id));

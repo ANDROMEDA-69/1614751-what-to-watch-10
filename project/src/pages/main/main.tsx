@@ -4,12 +4,14 @@ import {useAppSelector } from '../../hooks/index';
 import FilmsList from '../../components/films-list/films-list';
 import GenresList from '../../components/genres-list/genres-list';
 import Header from '../../components/header/header';
+import { getPromoFilm } from '../../store/promo-film-process/selectors';
+import { getFilms, getFilteredFilms } from '../../store/films-process/selectors';
 
 function Main(): JSX.Element {
-  const promo = useAppSelector((state) => state.promo);
-  const filmsList = useAppSelector((state) => state.films);
-  const filteredFilmsList = useAppSelector((state) => state.filteredFilms);
-  const favoriteFilmsLength = useAppSelector((state) => state.films).filter((filmA) => filmA.isFavorite).length;
+  const promo = useAppSelector(getPromoFilm);
+  const filmsList = useAppSelector(getFilms);
+  const filteredFilmsList = useAppSelector(getFilteredFilms);
+  const favoriteFilmsLength = useAppSelector(getFilms).filter((filmA) => filmA.isFavorite).length;
   return (
     <>
       <section className="film-card">

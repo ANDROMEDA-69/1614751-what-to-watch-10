@@ -12,15 +12,16 @@ import PrivateRoute from '../../components/private-route/private-route';
 import LoadingScreen from '../loading-screen/loading-screen';
 import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-router/history-router';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
 
 
 function App(): JSX.Element {
-  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
+  const authStatus = useAppSelector(getAuthorizationStatus);
 
-  if(isCheckedAuth(authorizationStatus) || isDataLoaded){
+  if(isCheckedAuth(authStatus)){
     return (
       <LoadingScreen />
     );

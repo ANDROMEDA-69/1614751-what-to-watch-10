@@ -3,6 +3,10 @@ export type AddReview = {
   rating: number;
 }
 
+export type errorReview = {
+  error: string;
+};
+
 
 export type Review = {
     comment: string;

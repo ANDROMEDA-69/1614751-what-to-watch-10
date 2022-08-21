@@ -4,10 +4,11 @@ import AddReviewForm from '../../components/add-review-form/add-review-form';
 import Logo from '../../components/logo/logo';
 import { useEffect } from 'react';
 import { fetchFilmAction } from '../../store/api-actions';
+import { getFilm } from '../../store/film-process/selectors';
 
 function AddReview(): JSX.Element {
   const dispatch = useAppDispatch();
-  const film = useAppSelector((state) => state.film);
+  const film = useAppSelector(getFilm);
   const params = useParams();
 
   useEffect(() => {

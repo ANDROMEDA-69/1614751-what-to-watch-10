@@ -3,6 +3,7 @@ import {DEFAULT_GENRE} from '../../const';
 import { Films } from '../../types/films';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {changeGenre, setFilter, resetFilters} from '../../store/action';
+import { getGenre } from '../../store/genre-process/selectors';
 
 type GenresListProps = {
   films: Films;
@@ -10,7 +11,7 @@ type GenresListProps = {
 
 function GenresList({films}: GenresListProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const currentGenre = useAppSelector((state) => state.genre);
+  const currentGenre = useAppSelector(getGenre);
   const genres: Set<string> = new Set();
   const genreListItems = [];
 

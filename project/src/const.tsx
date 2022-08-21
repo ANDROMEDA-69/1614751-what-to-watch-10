@@ -7,6 +7,15 @@ enum AppRoute {
   Player = '/player/:id',
 }
 
+enum NameSpace {
+  User = 'USER',
+  PromoFilm = 'PROMO_FILM',
+  Films = 'FILMS',
+  Film = 'FILM',
+  FilterProcess= 'FILTER_PROCESS',
+  AddReview = 'ADD_REVIEW',
+}
+
 enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
@@ -35,5 +44,6 @@ export {
   AuthorizationStatus,
   DEFAULT_GENRE,
   CARDS_PER_STEP,
-  MONTHS
+  MONTHS,
+  NameSpace
 };
