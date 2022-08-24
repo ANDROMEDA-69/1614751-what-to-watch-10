@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Footer from '../../components/footer/footer';
 import {useAppSelector } from '../../hooks/index';
 import FilmsList from '../../components/films-list/films-list';
@@ -6,12 +5,22 @@ import GenresList from '../../components/genres-list/genres-list';
 import Header from '../../components/header/header';
 import { getPromoFilm } from '../../store/promo-film-process/selectors';
 import { getFilms, getFilteredFilms } from '../../store/films-process/selectors';
+import MyListButton from '../../components/my-list-button/my-list-button';
+import { useNavigate } from 'react-router-dom';
+import { APIRoute } from '../../const';
 
 function Main(): JSX.Element {
   const promo = useAppSelector(getPromoFilm);
   const filmsList = useAppSelector(getFilms);
   const filteredFilmsList = useAppSelector(getFilteredFilms);
-  const favoriteFilmsLength = useAppSelector(getFilms).filter((filmA) => filmA.isFavorite).length;
+  const navigate = useNavigate();
+
+  const onVideoButtonClickHandle = () => {
+    const path = `${APIRoute.Player}/${promo?.id}`;
+    navigate(path);
+  };
+
+
   return (
     <>
       <section className="film-card">
@@ -48,22 +57,14 @@ function Main(): JSX.Element {
                 <button
                   className="btn btn--play film-card__button"
                   type="button"
+                  onClick={onVideoButtonClickHandle}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                <Link
-                  className="btn btn--list film-card__button"
-                  to='/mylist'
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">{favoriteFilmsLength}</span>
-                </Link>
+                <MyListButton />
               </div>
             </div>
           </div>

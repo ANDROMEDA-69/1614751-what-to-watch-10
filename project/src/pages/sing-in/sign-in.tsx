@@ -2,7 +2,7 @@ import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
 import { useRef, FormEvent } from 'react';
 import { useAppDispatch } from '../../hooks';
-import {loginAction} from '../../store/api-actions';
+import {fetchFilmsFavoriteAction, loginAction} from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
 
 function SignIn(): JSX.Element {
@@ -23,6 +23,7 @@ function SignIn(): JSX.Element {
         login: loginRef.current.value,
         password: passwordRef.current.value,
       });
+      dispatch(fetchFilmsFavoriteAction());
     }
   };
 
