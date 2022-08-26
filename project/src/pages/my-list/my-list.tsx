@@ -3,11 +3,11 @@ import FilmsList from '../../components/films-list/films-list';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import { useAppSelector } from '../../hooks';
-import { getFilms } from '../../store/films-process/selectors';
+import { getFavoriteFilms } from '../../store/favorite-process/selectors';
 
 
 function MyList(): JSX.Element {
-  const films = useAppSelector(getFilms);
+  const films = useAppSelector(getFavoriteFilms);
 
 
   return (

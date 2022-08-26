@@ -7,3 +7,5 @@ export const getFilm = (state: State): Film | null => state[NameSpace.Film].film
 export const getFilmReview = (state: State): Reviews => state[NameSpace.Film].reviews;
 export const getSimilarFilms = (state: State): Films => state[NameSpace.Film].similarFilms;
 export const getLoadingDataStatus = (state: State): boolean => state[NameSpace.Film].isDataLoaded;
+export const getFilmID = (state: State): number | undefined => state[NameSpace.Film].film?.id;
+export const getFilmStatus = (state: State): boolean | undefined => state[NameSpace.Film].film?.isFavorite;

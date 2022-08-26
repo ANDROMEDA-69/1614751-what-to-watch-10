@@ -35,6 +35,11 @@ export type PromoFilmProcess = {
     promo: Film | null;
     isDataLoaded: boolean;
 }
+
+export type FavoriteFilmsProcess = {
+    favoriteFilms: Films | [];
+    isDataLoaded: boolean;
+}
 export type Reducer = ReturnType<typeof rootReducer>;
 
 export type State = ReturnType<typeof store.getState>;

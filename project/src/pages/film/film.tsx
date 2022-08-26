@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import Footer from '../../components/footer/footer';
 import Tabs from '../../components/tabs/tabs';
@@ -10,19 +10,19 @@ import {
   fetchReviewsAction,
 } from '../../store/api-actions';
 import Header from '../../components/header/header';
-import {AuthorizationStatus} from '../../const';
+import { AuthorizationStatus, APIRoute } from '../../const';
 import { getFilm, getFilmReview } from '../../store/film-process/selectors';
 import { getFilms } from '../../store/films-process/selectors';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import MyListButton from '../../components/my-list-button/my-list-button';
 
 function Film(): JSX.Element {
   const dispatch = useAppDispatch();
   const params = useParams();
   const currentFilm = useAppSelector(getFilm);
   const reviews = useAppSelector(getFilmReview);
-  const favoriteFilmsLength = useAppSelector(getFilms).filter(
-    (filmA) => filmA.isFavorite
-  ).length;
+  const navigate = useNavigate();
+
   const similarFilms = useAppSelector(getFilms);
   const authStatus = useAppSelector(getAuthorizationStatus);
 
@@ -31,6 +31,11 @@ function Film(): JSX.Element {
     dispatch(fetchSimilarFilmsAction(params?.id));
     dispatch(fetchReviewsAction(params?.id));
   }, [params?.id, dispatch]);
+
+  const onVideoButtonClickHandle = () => {
+    const path = `${APIRoute.Player}/${currentFilm?.id}`;
+    navigate(path);
+  };
 
   return (
     <>
@@ -53,25 +58,25 @@ function Film(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <Link
+                <button
                   className="btn btn--play film-card__button"
-                  to={`player/${currentFilm?.id}`}
+                  type="button"
+                  onClick={onVideoButtonClickHandle}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </Link>
-                <Link className="btn btn--list film-card__button" to="/mylist">
-                  <svg viewBox="0 0 19 20" width={19} height={20}>
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">
-                    {favoriteFilmsLength}
-                  </span>
-                </Link>
-                {authStatus === AuthorizationStatus.Auth ? <Link to={`/films/${currentFilm?.id}/review`} className="btn film-card__button">Add review</Link> : null}
+                </button>
+                <MyListButton />
+                {authStatus === AuthorizationStatus.Auth ? (
+                  <Link
+                    to={`/films/${currentFilm?.id}/review`}
+                    className="btn film-card__button"
+                  >
+                    Add review
+                  </Link>
+                ) : null}
               </div>
             </div>
           </div>
@@ -99,7 +104,6 @@ function Film(): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <FilmsList films={similarFilms} />
-
         </section>
 
         <Footer />
