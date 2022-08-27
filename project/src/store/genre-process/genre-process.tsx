@@ -1,33 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { DEFAULT_GENRE, NameSpace } from '../../const';
+import { CARDS_PER_STEP, DEFAULT_GENRE, NameSpace } from '../../const';
 import { FilterProcess,} from '../../types/state';
-import { changeGenre, setFilter, resetFilters } from '../action';
 
 const initialState: FilterProcess = {
   genre: DEFAULT_GENRE,
-  filteredFilms: [],
-  films: [],
+  filmsCount: CARDS_PER_STEP,
 };
 
-export const filterProcess = createSlice({
+export const filtersProcess = createSlice({
   name: NameSpace.FilterProcess,
   initialState,
-  reducers: {},
-  extraReducers(builder) {
-    builder
-      .addCase(changeGenre, (state, action) => {
-        const { genre } = action.payload;
-        state.genre = genre;
-      })
-
-      .addCase(setFilter, (state, action) => {
-        state.filteredFilms = [...state.films].filter(
-          (film) => film.genre === state.genre
-        );
-      })
-
-      .addCase(resetFilters, (state, action) => {
-        state.filteredFilms = [...state.films];
-      });
+  reducers: {
+    changeGenre: (state, action) => {
+      state.genre = action.payload;
+    },
+    setFilter: (state) => {
+      state.filmsCount = CARDS_PER_STEP;
+    },
+    increaseFilmsCount: (state) => {
+      state.filmsCount += CARDS_PER_STEP;
+    },
+    resetFilters: (state) => {
+      state.filmsCount = CARDS_PER_STEP;
+    },
   },
 });
+
+export const {changeGenre, setFilter, increaseFilmsCount, resetFilters} = filtersProcess.actions;

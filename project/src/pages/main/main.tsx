@@ -5,14 +5,20 @@ import GenresList from '../../components/genres-list/genres-list';
 import Header from '../../components/header/header';
 import { getPromoFilm } from '../../store/promo-film-process/selectors';
 import { getFilms, getFilteredFilms } from '../../store/films-process/selectors';
+import { getFilmsCount } from '../../store/genre-process/selectors';
 import MyListButton from '../../components/my-list-button/my-list-button';
 import { useNavigate } from 'react-router-dom';
 import { APIRoute } from '../../const';
+import ShowMore from '../../components/show-more/show-more';
 
 function Main(): JSX.Element {
   const promo = useAppSelector(getPromoFilm);
   const filmsList = useAppSelector(getFilms);
   const filteredFilmsList = useAppSelector(getFilteredFilms);
+  const filteredFilmsCount = filteredFilmsList.length;
+  const filmsCount = useAppSelector(getFilmsCount);
+  const correctFilmsCount = Math.min(filteredFilmsCount, filmsCount);
+  const renderedFilms = [...filteredFilmsList].slice(0, correctFilmsCount);
   const navigate = useNavigate();
 
   const onVideoButtonClickHandle = () => {
@@ -77,13 +83,9 @@ function Main(): JSX.Element {
 
           <GenresList films={filmsList} />
 
-          <FilmsList films={filteredFilmsList} />
+          <FilmsList films={renderedFilms} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-              Show more
-            </button>
-          </div>
+          <ShowMore isShowButton={filteredFilmsCount > filmsCount} />
         </section>
 
         <Footer />
