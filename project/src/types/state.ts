@@ -15,8 +15,7 @@ export type FilmsProcess = {
 
 export type FilterProcess = {
     genre: string;
-    filteredFilms: Films;
-    films: Films;
+    filmsCount: number;
 }
 
 export type FilmProcess = {
