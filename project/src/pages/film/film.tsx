@@ -11,8 +11,7 @@ import {
 } from '../../store/api-actions';
 import Header from '../../components/header/header';
 import { AuthorizationStatus, APIRoute } from '../../const';
-import { getFilm, getFilmReview } from '../../store/film-process/selectors';
-import { getFilms } from '../../store/films-process/selectors';
+import { getFilm, getFilmReview, getSimilarFilms } from '../../store/film-process/selectors';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import MyListButton from '../../components/my-list-button/my-list-button';
 
@@ -22,8 +21,7 @@ function Film(): JSX.Element {
   const currentFilm = useAppSelector(getFilm);
   const reviews = useAppSelector(getFilmReview);
   const navigate = useNavigate();
-
-  const similarFilms = useAppSelector(getFilms);
+  const similarFilms = useAppSelector(getSimilarFilms);
   const authStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
