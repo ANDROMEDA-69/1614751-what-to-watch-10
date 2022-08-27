@@ -32,18 +32,26 @@ function App(): JSX.Element {
       <Routes>
         <Route path={AppRoute.Main} element={<Main />} />
         <Route path={AppRoute.Film} element={<Film />} />
-        <Route path={AppRoute.AddReview} element={<AddReview />} />
+        <Route
+          path={AppRoute.AddReview}
+          element=
+            {
+              <PrivateRoute authorizationStatus={authStatus}>
+                <AddReview />
+              </PrivateRoute>
+            }
+        />
         <Route path={AppRoute.Player} element={<Player />} />
         <Route path={AppRoute.Login} element={<SignIn />} />
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute authorizationStatus={authStatus}>
               <MyList />
             </PrivateRoute>
           }
         />
-        <Route path="*" element={<NotFound />} />
+        <Route path={AppRoute.NotFound} element={<NotFound />} />
       </Routes>
     </HistoryRouter>
   );
