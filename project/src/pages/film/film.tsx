@@ -66,7 +66,7 @@ function Film(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <MyListButton />
+                <MyListButton filmId={currentFilm?.id}/>
                 {authStatus === AuthorizationStatus.Auth ? (
                   <Link
                     to={`/films/${currentFilm?.id}/review`}

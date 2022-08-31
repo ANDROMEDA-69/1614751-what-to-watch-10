@@ -1,7 +1,7 @@
 import { NameSpace } from '../../const';
-import { errorReview } from '../../types/review';
 import { State } from '../../types/state';
 
 
-export const getError = (state: State): errorReview | null | unknown => state[NameSpace.AddReview].error;
+export const getReviewStatus = (state: State) => state[NameSpace.AddReview].reviewSubmited;
+export const getLoadingStatus = (state: State) => state[NameSpace.AddReview].isDataLoaded;
 

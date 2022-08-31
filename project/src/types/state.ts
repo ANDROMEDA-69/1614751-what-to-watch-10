@@ -1,11 +1,12 @@
 import {store} from '../store/index.js';
 import { AuthorizationStatus } from '../const.js';
 import { Films, Film } from './films.js';
-import { Reviews, errorReview } from './review.js';
+import { Reviews } from './review.js';
 import { rootReducer } from '../store/root-reducer.js';
 
 export type UserProcess = {
     authorizationStatus: AuthorizationStatus;
+    authorizationError: string;
 };
 
 export type FilmsProcess = {
@@ -26,7 +27,7 @@ export type FilmProcess = {
 }
 
 export type AddReviewProcess = {
-    error: errorReview | null | unknown;
+    reviewSubmited: boolean;
     isDataLoaded: boolean;
 }
 

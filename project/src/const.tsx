@@ -38,6 +38,12 @@ export enum APIRoute {
 const CARDS_PER_STEP = 8;
 const ADDED_FILM_IN_LIST = true;
 const DEFAULT_GENRE = 'All genres';
+export const DEFAULT_RATING = 0;
+
+export enum ReviewLength {
+  Min = 50,
+  Max = 400,
+}
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -51,3 +57,10 @@ export {
   NameSpace,
   ADDED_FILM_IN_LIST,
 };
+
+
+export enum ErrorMessage {
+  SignInValidate = 'We can’t recognize this email and password combination. Please try again.',
+  IncorrectEmail = 'Please enter a valid email address',
+}
+

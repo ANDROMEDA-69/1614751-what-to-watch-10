@@ -70,7 +70,7 @@ function Main(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <MyListButton />
+                <MyListButton filmId={promo?.id}/>
               </div>
             </div>
           </div>
