@@ -19,15 +19,15 @@ function AddReviewForm(): JSX.Element {
 
   const [formData, setFormData] = useState({
     rating: '',
-    'review-text': '',
+    reviewText: '',
   });
 
-  const isValidReview = useValidateReview(formData['review-text'], Number(formData.rating));
+  const isValidReview = useValidateReview(formData.reviewText, Number(formData.rating));
 
 
   const handleChange = (evt: ChangeEvent< HTMLInputElement | HTMLTextAreaElement>) => {
-    const {name, value} = evt.target;
-    setFormData({...formData, [name]: value});
+    const {value} = evt.target;
+    setFormData({...formData, reviewText: value});
   };
 
 
@@ -43,11 +43,11 @@ function AddReviewForm(): JSX.Element {
     evt.preventDefault();
     const sendingFormData = {
       rating: Number(formData.rating),
-      comment: formData['review-text'],
+      comment: formData.reviewText,
 
     };
 
-    if(formData.rating && formData['review-text']) {
+    if(formData.rating && formData.reviewText) {
       dispatch(addReviewAction([params.id, sendingFormData]));
     }
   };
@@ -88,7 +88,7 @@ function AddReviewForm(): JSX.Element {
             id="review-text"
             placeholder="Review text"
             onChange={handleChange}
-            value={formData['review-text']}
+            value={formData.reviewText}
           >
           </textarea>
           <div className="add-review__submit">
