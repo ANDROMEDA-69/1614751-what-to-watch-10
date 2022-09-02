@@ -2,7 +2,6 @@ import {store} from '../store/index.js';
 import { AuthorizationStatus } from '../const.js';
 import { Films, Film } from './films.js';
 import { Reviews } from './review.js';
-import { rootReducer } from '../store/root-reducer.js';
 
 export type UserProcess = {
     authorizationStatus: AuthorizationStatus;
@@ -40,7 +39,7 @@ export type FavoriteFilmsProcess = {
     favoriteFilms: Films | [];
     isDataLoaded: boolean;
 }
-export type Reducer = ReturnType<typeof rootReducer>;
+
 
 export type State = ReturnType<typeof store.getState>;
 

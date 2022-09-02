@@ -13,27 +13,26 @@ const ratingValues = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 function AddReviewForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isSending = useAppSelector(getLoadingStatus);
   const params = useParams();
   const reviewStatus = useAppSelector(getReviewStatus);
+  const loadingStatus = useAppSelector(getLoadingStatus);
 
   const [formData, setFormData] = useState({
     rating: '',
-    reviewText: '',
+    'review-text': '',
   });
 
-  const isValidReview = useValidateReview(formData.reviewText, Number(formData.rating));
+  const isValidReview = useValidateReview(formData['review-text'], Number(formData.rating));
 
 
   const handleChange = (evt: ChangeEvent< HTMLInputElement | HTMLTextAreaElement>) => {
-    const {value} = evt.target;
-    setFormData({...formData, reviewText: value});
+    const {name, value} = evt.target;
+    setFormData({...formData, [name]: value});
   };
-
 
   useEffect(() => {
     if (reviewStatus) {
-      navigate(`${APIRoute.Reviews}${params?.id}`);
+      navigate(`${APIRoute.Films}/${params?.id}`);
       dispatch(resetReviewStatus);
     }
   }, [dispatch, navigate, params?.id, reviewStatus, formData]);
@@ -43,11 +42,11 @@ function AddReviewForm(): JSX.Element {
     evt.preventDefault();
     const sendingFormData = {
       rating: Number(formData.rating),
-      comment: formData.reviewText,
+      comment: formData['review-text'],
 
     };
 
-    if(formData.rating && formData.reviewText) {
+    if(formData.rating && formData['review-text']) {
       dispatch(addReviewAction([params.id, sendingFormData]));
     }
   };
@@ -70,7 +69,7 @@ function AddReviewForm(): JSX.Element {
                     name="rating"
                     value={score}
                     checked={score === Number(formData.rating)}
-                    disabled={isSending}
+                    disabled={loadingStatus}
                   />
                   <label className="rating__label" htmlFor={`star-${score}`}>
                   Rating {score}
@@ -88,11 +87,11 @@ function AddReviewForm(): JSX.Element {
             id="review-text"
             placeholder="Review text"
             onChange={handleChange}
-            value={formData.reviewText}
+            value={formData['review-text']}
           >
           </textarea>
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit" disabled={isSending || !isValidReview}>
+            <button className="add-review__btn" type="submit" disabled={loadingStatus || !isValidReview}>
               Post
             </button>
           </div>

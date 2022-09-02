@@ -28,7 +28,7 @@ function Player(): JSX.Element {
   } = useVideoPlayer(videoElement);
 
   const onExitButtonClickHandler = () => {
-    const path = `${APIRoute.Films}/:${film?.id}`;
+    const path = `${APIRoute.Films}/${film?.id}`;
     navigate(path);
   };
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Film } from '../../types/films';
 import Overview from '../overview/overview';
-import FilmReviews from '../reviews/reviews';
+import FilmReviews from '../film-reviews/film-reviews';
 import Details from '../details/details';
 import { Reviews } from '../../types/review';
 import './button.css';

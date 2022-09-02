@@ -9,7 +9,7 @@ type ShowMoreProps = {
 function ShowMore({isShowButton}: ShowMoreProps): JSX.Element | null {
   const dispatch = useAppDispatch();
 
-  const ClickShowMoreHandler = (evt: SyntheticEvent) => {
+  const сlickShowMoreHandler = (evt: SyntheticEvent) => {
     evt.preventDefault();
     dispatch(increaseFilmsCount());
   };
@@ -17,7 +17,7 @@ function ShowMore({isShowButton}: ShowMoreProps): JSX.Element | null {
   if (isShowButton) {
     return (
       <div className="catalog__more">
-        <button className="catalog__button" type="button" onClick={ClickShowMoreHandler}>Show more</button>
+        <button className="catalog__button" type="button" onClick={сlickShowMoreHandler}>Show more</button>
       </div>
     );
   }
